@@ -124,8 +124,8 @@ struct Index {
     .borderRadius(10)
   }
 
-  build() {
-    //根组件
+  @Builder
+  XiaoMiYouPinZong(){
     Column({ space: 10 }) {
       this.DingBuBuilder()
       this.LunBoTuBuilder()
@@ -142,5 +142,12 @@ struct Index {
       direction: GradientDirection.Bottom,
       colors: [['#ffc9c9c9', 0.5], ['#ffffffff', 1]]
     })
+  }
+
+  build() {
+    //根组件
+    Column(){
+      this.XiaoMiYouPinZong()
+    }
   }
 }
