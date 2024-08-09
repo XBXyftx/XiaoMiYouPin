@@ -2,9 +2,11 @@ interface XMNavItem {
   title: string
   icon: ResourceStr
 }
+
 @Entry
 @Component
 struct Index {
+  scroller: Scroller = new Scroller()
   navList: XMNavItem[] = [
     { title: '上新精选', icon: $r('app.media.ic_xiaomi_nav_01') },
     { title: '智能家电', icon: $r('app.media.ic_xiaomi_nav_02') },
@@ -27,7 +29,9 @@ struct Index {
     { title: '户外运动', icon: $r('app.media.ic_xiaomi_nav_19') },
     { title: '3C数码', icon: $r('app.media.ic_xiaomi_nav_20') }
   ]
-  @Builder DingBuBuilder(){
+
+  @Builder
+  DingBuBuilder() {
     //顶部
     Row({ space: 10 }) {
       Image($rawfile('ic_xiaomi_logo.png'))
@@ -47,7 +51,7 @@ struct Index {
       Blank()
       Badge({
         value: '99+', position: { x: 15 }, style: {}
-      }){
+      }) {
         Image($rawfile('ic_xiaomi_ring.png'))
           .width(35)
       }
@@ -55,8 +59,10 @@ struct Index {
     }
     .width('100%')
   }
-  @Builder LunBoTuBuilder(){
-    Swiper(){
+
+  @Builder
+  LunBoTuBuilder() {
+    Swiper() {
       Image($rawfile('ic_swiper_xmyp01.jpeg'))
       Image($rawfile('ic_swiper_xmyp02.jpeg'))
       Image($rawfile('ic_swiper_xmyp03.jpeg'))
@@ -72,18 +78,58 @@ struct Index {
         .selectedItemHeight(4)
     )
     .autoPlay(true)
-    .interval(2000)//自动轮播间隔
-    .borderRadius(20)
+    .interval(2000) //自动轮播间隔
+    .borderRadius(10)
   }
-  @Builder DaoHangQuBuilder(){
 
+  @Builder
+  DaoHangQuBuilder() {
+    Column() {
+      Grid(this.scroller) {
+        ForEach(this.navList, (item: XMNavItem, i) => {
+          GridItem() {
+            Column() {
+              Image(item.icon)
+                .width('80%');
+              Text(item.title)
+                .fontSize(12);
+            }
+          }
+          .width('20%')
+        })
+      }
+      .width('100%')
+      .height(160)
+      .rowsTemplate('1fr 1fr')
+      .padding({ bottom: 10 })
+      .scrollBar(BarState.Off)
+
+      ScrollBar({
+        direction: ScrollBarDirection.Horizontal,
+        scroller: this.scroller
+      }){
+        Text()
+          .width(15)
+          .height(5)
+          .backgroundColor(Color.Orange)
+          .borderRadius(40)
+      }
+      .borderRadius(40)
+      .width(30)
+      .height(5)
+      .backgroundColor('#ccc')
+      .margin({bottom:5})
+    }
+    .backgroundColor(Color.White)
+    .borderRadius(10)
   }
 
   build() {
     //根组件
-    Column({space:20}) {
+    Column({ space: 20 }) {
       this.DingBuBuilder()
       this.LunBoTuBuilder()
+      this.DaoHangQuBuilder()
     }
     .padding(10)
     .height('100%')
