@@ -107,7 +107,7 @@ struct Index {
       ScrollBar({
         direction: ScrollBarDirection.Horizontal,
         scroller: this.scroller
-      }){
+      }) {
         Text()
           .width(15)
           .height(5)
@@ -118,14 +118,14 @@ struct Index {
       .width(30)
       .height(5)
       .backgroundColor('#ccc')
-      .margin({bottom:5})
+      .margin({ bottom: 5 })
     }
     .backgroundColor(Color.White)
     .borderRadius(10)
   }
 
   @Builder
-  XiaoMiYouPinZong(){
+  XiaoMiYouPinZong() {
     Column({ space: 10 }) {
       this.DingBuBuilder()
       this.LunBoTuBuilder()
@@ -146,7 +146,7 @@ struct Index {
 
   build() {
     //根组件
-    Column(){
+    Column() {
       this.XiaoMiYouPinZong()
     }
   }
