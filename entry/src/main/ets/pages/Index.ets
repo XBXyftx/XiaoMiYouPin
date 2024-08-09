@@ -126,10 +126,14 @@ struct Index {
 
   build() {
     //根组件
-    Column({ space: 20 }) {
+    Column({ space: 10 }) {
       this.DingBuBuilder()
       this.LunBoTuBuilder()
       this.DaoHangQuBuilder()
+      // 底部楼层区域
+      Image($r('app.media.ic_xiaomi_floor'))
+        .width('100%')
+        .borderRadius(10)
     }
     .padding(10)
     .height('100%')
