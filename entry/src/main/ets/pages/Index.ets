@@ -41,7 +41,7 @@ struct Index {
           .width(20)
         TextInput({ placeholder: '电视' })
           .backgroundColor(Color.Transparent)
-          .width(160)
+          .width(180)
       }
       .backgroundColor(Color.White)
       .border({ width: 1, color: Color.Orange })
